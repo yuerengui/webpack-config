@@ -47,7 +47,7 @@ module.exports = {
                     ]
                 })
                 //  loader: 'style-loader!css-loader!less-loader'
-                //  将 less 文件压缩至 bundle.js 中
+                //  不使用 ExtractTextPlugin 默认会将 less 文件压缩至 bundle.js 中
             },
             { 
                 //  SASS的.scss 文件使用 style-loader、css-loader 和 sass-loader 来编译处理
@@ -69,8 +69,7 @@ module.exports = {
                     ]
                 })
                 //  loader: 'style-loader!css-loader!sass-loader'
-                //  抽离 css 文件到一个 css 文件中,而后再 html 中引入
-                //  webpack 的 loader 默认将 css 都打包到 bundle.js 中
+                //  不使用 ExtractTextPlugin 默认会将 sass 文件压缩至 bundle.js 中
             },
             {
                 //  编译es6
