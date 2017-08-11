@@ -3,3 +3,4 @@ require('./css/sass/style.scss');
 require('./css/css/style.css');
 
 require('./js/index');
+require('./js/config');

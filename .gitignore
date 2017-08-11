@@ -1,2 +1,7 @@
 .vscode/
 node_modules
+dist/css/style.css
+dist/css/style.css.map
+dist/img/32bbb51f4412af34a760d0f3ec5d6924.png
+dist/js/bundle.js
+dist/js/bundle.js.map
