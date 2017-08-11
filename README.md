@@ -16,3 +16,9 @@ npm i expose-loader --save
 # run server
 webpack-dev-server --hot
 ```
+
+1. css,less,sass 压缩处理并导出为 style.css
+2. css 中的图片 URL 处理,字体处理,按照配置决定是否转换成 BASE64格式
+3. JS 合并压缩代码
+4. 第三方 JS 库不压缩到 bundle.js 中的处理
+5. JS ES2015 代码转换
