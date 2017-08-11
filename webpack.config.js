@@ -1,3 +1,5 @@
+const webpack=require('webpack');
+
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 //  npm install --save-dev extract-text-webpack-plugin
 
@@ -18,8 +20,8 @@ module.exports = {
                       {
                         loader: 'css-loader',
                         options:{
-                          minimize: true
-                          // 压缩CSS
+                          minimize: false
+                          // 是否压缩 css
                         }
                       }
                     ]
@@ -31,7 +33,18 @@ module.exports = {
                 test: /\.less$/,
                 use: ExtractTextPlugin.extract({
                         fallback: 'style-loader',
-                        use: ['css-loader', 'less-loader']
+                        use:[
+                        {
+                            loader:"css-loader",
+                            options:{
+                                minimize: false
+                                // 是否压缩 less
+                            }
+                        },
+                        {
+                            loader: "less-loader"
+                        }
+                    ]
                 })
                 //  loader: 'style-loader!css-loader!less-loader'
                 //  将 less 文件压缩至 bundle.js 中
@@ -46,8 +59,8 @@ module.exports = {
                         {
                             loader:"css-loader",
                             options:{
-                                minimize: true
-                                // 压缩CSS
+                                minimize: false
+                                // 是否压缩 scss
                             }
                         },
                         {
@@ -60,6 +73,7 @@ module.exports = {
                 //  webpack 的 loader 默认将 css 都打包到 bundle.js 中
             },
             {
+                //  编译es6 到 es5
                 test: /\.js$/,
                 use:"babel-loader",
                 exclude:['node_moudles']
@@ -91,20 +105,41 @@ module.exports = {
                 //  npm i url-loader --save-dev && npm i file-loader --save-dev
                 //  把 只要涉及到处理的文件中 less,scss,js,html 涉及到图片文件的,就会根据规则处理并替换路径
                 //  url-loader 是在 file-loader 的基础上进行的封装,所以所有的 file-loader 方法都是可用的。
+            },
+            {
+                test:/\.(woff|woff2|eot|ttf|svg)$/,
+                use:{
+                    loader:'url-loader',
+                    options: {
+                        limit: 100000,
+                        outputPath: '/dist/fonts/',
+                        name: '[hash].[ext]'
+                  }
+                }
             }
-           
-
         ]
     },
     plugins: [
+        //  css抽离
         new ExtractTextPlugin({
             // filename:'./dist/css/app_[hash].css',
             // filename:'./dist/css/app_[chunkhash].css',
             filename:'./dist/css/style.css', //输出文件名
             disable:false,
             allChunks:false
-        })
-        //css抽离
+        }),
+        //  代码优化：合并以及压缩JS代码
+        // new webpack.optimize.UglifyJsPlugin({
+        //     beautify: false,
+        //     //  输出不显示警告
+        //     compress:{
+        //         warnings:false
+        //     },
+        //     //  输出去掉注释
+        //     output:{
+        //         comments:false
+        //     }
+        // }),
     ],
     externals:{
        jquery:'window.$'
