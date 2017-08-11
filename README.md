@@ -17,7 +17,7 @@ npm i expose-loader --save
 webpack-dev-server --hot
 ```
 
-> 主要配置
+> 主要配置项
 
 1. css,less,sass 压缩处理并导出为 style.css
 2. css 中的图片 URL 处理,字体处理,按照配置决定是否转换成 BASE64格式
