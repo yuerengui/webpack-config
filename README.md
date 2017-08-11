@@ -13,6 +13,6 @@ npm i --save-dev babel-loader babel-core babel-preset-es2015 babel-preset-stage-
 npm i --save-dev url-loader file-loader 
 npm i expose-loader --save
 
-
+# run server
 webpack-dev-server --hot
 ```
