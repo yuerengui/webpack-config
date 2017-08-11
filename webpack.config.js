@@ -88,6 +88,7 @@ module.exports = {
                 //     options: '$'
                 // }]
                 //  把模块暴露给全局变量,需要注意的是,这种方式需要在 entry.js 中 require('jquery') 之后才会 expose 给全局
+                //  如果不使用上面的选项,直接在 entry.js 中 require('jquery') 会报错。
                 //  这种方式也会将 jquery 压缩进 bundle.js 中
                 //  所以需要使用 expose-loader 将库的模块暴露给全局变量
                 //  The expose loader adds modules to the global object. 
