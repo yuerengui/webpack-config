@@ -1,0 +1,9 @@
+div{
+    content: "this is a css file";
+}
+#div1 {
+    content: "";
+}
+#div .clas{
+    text-align: center;
+}

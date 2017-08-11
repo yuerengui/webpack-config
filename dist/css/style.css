@@ -1,0 +1,28 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+main {
+  width: 200px;
+  height: 200px;
+  background: grey;
+  display: inline-block;
+  margin: 0 auto;
+}
+main div#main {
+  width: 150px;
+  height: 100px;
+  margin: 0 auto;
+  border: 1px solid red;
+  box-sizing: border-box;
+  background: pink;
+  margin-top: 50px;
+  background: url(/dist/img/32bbb51f4412af34a760d0f3ec5d6924.png) no-repeat;
+}
+main div#main h1 {
+  font-size: 20px;
+  font-weight: 700;
+  color: red;
+}
+*{vertical-align:middle}div{content:"this is a css file"}#div1{content:""}#div .clas{text-align:center}
+/*# sourceMappingURL=style.css.map*/
