@@ -79,12 +79,16 @@ module.exports = {
                 //  根目录创建.babelrc,将 presets:['es2015','stage-0'] 放入对应文件中
             },
             {
-                test: require.resolve('jquery'),
-                use: [{
-                    loader: 'expose-loader',
-                    options: '$'
-                }]
-                //  把模块暴露给全局变量,需要注意的是,即使你外部引入 js 库,webpack 也不会将库中的对外模块暴露给全局
+                // test: require.resolve('jquery'),
+                // use: [{
+                //     loader: 'expose-loader',
+                //     options: 'jQuery'
+                // },{
+                //     loader: 'expose-loader',
+                //     options: '$'
+                // }]
+                //  把模块暴露给全局变量,需要注意的是,这种方式需要在 entry.js 中 require('jquery') 之后才会 expose 给全局
+                //  这种方式也会将 jquery 压缩进 bundle.js 中
                 //  所以需要使用 expose-loader 将库的模块暴露给全局变量
                 //  The expose loader adds modules to the global object. 
                 //  This is useful for debugging, or supporting libraries that depend on libraries in globals.
@@ -97,8 +101,7 @@ module.exports = {
                         limit: 8192,
                         //这个限制以下的图片转换成 dataURL
                         outputPath: '/dist/img/', //最后一个/一定要加,不然就变成字符串拼接了
-                        name: '[hash].[ext]'
-                        
+                        name: '[hash].[ext]' 
                   }
                 }
                 //  npm i url-loader --save-dev && npm i file-loader --save-dev
@@ -141,9 +144,12 @@ module.exports = {
         // }),
     ],
     externals:{
-       jquery:'window.$'
+       jquery222:'window.$'
     }
-    //  直接从全局变量中读取对应的组件,然后通过 var $ = require('jquery')来使用
+    //  功能：script 引入之后可以使用 require 的方式读取模块
+    //  直接从全局变量中读取对应的组件,然后通过 var $ = require('jquery') 来使用
+    //  需要注意的是,如果不添加这个选项,无法使用 require 包含对应的组件,会报错
+    //  因为是模块化开发，所以使用 require 方式,来避免全局变量的产生
 }
 
 
