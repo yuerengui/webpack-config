@@ -73,7 +73,7 @@ module.exports = {
                 //  webpack 的 loader 默认将 css 都打包到 bundle.js 中
             },
             {
-                //  编译es6 到 es5
+                //  编译es6
                 test: /\.js$/,
                 use:"babel-loader",
                 exclude:['node_moudles']
