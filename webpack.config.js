@@ -7,7 +7,7 @@ module.exports = {
     devtool: 'sourcemap',
     entry: './entry.js',
     output: {
-        filename: './dist/js/bundle.js'
+        filename: './dist/js/app_[chunkhash].js'
     },
     module: {
         loaders: [
@@ -126,8 +126,8 @@ module.exports = {
         //  css抽离
         new ExtractTextPlugin({
             // filename:'./dist/css/app_[hash].css',
-            // filename:'./dist/css/app_[chunkhash].css',
-            filename:'./dist/css/style.css', //输出文件名
+            // filename:'./dist/css/app_[chunkhash].css',//输出文件名,当内容没有变化,contenthash 也不会改变，目的是在上线部署时，如果内容不变，则不需要重新请求文件
+            filename:'./dist/css/style.css', //输出静态文件名
             disable:false,
             allChunks:false
         }),

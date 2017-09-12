@@ -24,3 +24,4 @@ webpack-dev-server --hot
 3. JS 合并压缩代码
 4. 第三方 JS 库不压缩到 bundle.js 中的处理
 5. JS ES2015 代码转换
+6. css,js根据内容 hash（chunkhash） 打包
