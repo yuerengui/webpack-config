@@ -23,6 +23,6 @@ webpack-dev-server --hot
 2. css 中的图片 URL 处理,字体处理,按照配置决定是否转换成 BASE64格式
 3. JS 合并压缩混淆代码
 4. 手动引入的第三方 JS 库不压缩到 bundle.js 中的处理
-5. node_moudle 安装的第三方库 export 到单独的 bundle 中
+5. npm 安装的第三方库 export 到单独的 bundle 中
 6. JS ES2015 代码转换
 7. css,js根据内容 hash（chunkhash） 打包
