@@ -1,6 +1,8 @@
 const webpack=require('webpack');
-
+const cleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 //  npm install --save-dev extract-text-webpack-plugin
 
 module.exports = {
@@ -143,6 +145,19 @@ module.exports = {
         //         comments:false
         //     }
         // }),
+        new webpack.optimize.CommonsChunkPlugin({ //将 node_module 中引入的第三方包打包到一个 vendor 库中
+            name: 'vendor',
+            minChunks: ({ resource },count) => (
+                resource && resource.indexOf('node_modules') !== -1 && resource.match(/\.js$/)  
+                //node_modules 中的 js 模块，且是被引用至少一次的模块,请帮我打包到 vendor.[chunkhash].js 中
+            )
+        }),
+        new HtmlWebpackPlugin({
+            title:' this is my app' //动态生成 html,将入口的 js 文件全部自动插入而不需要手动维护
+        }),
+        // new BundleAnalyzerPlugin(), //分析 bundle 中包含哪些模块
+        new cleanWebpackPlugin(['dist'],{root:path.resolve(__dirname,'../')}) //生成 dist 上线之前先清空 dist 目录，减少手动维护的成本（删除旧的不需要的 dist 文件）
+    
     ],
     externals:{
        jquery222:'window.$'
